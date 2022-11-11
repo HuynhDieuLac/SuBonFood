@@ -1,0 +1,8 @@
+.row-title
+{
+	border: 1px solid white;
+	height: 500px;
+	width: 800px;
+	background-color: white;
+	border-radius: 20px;
+}

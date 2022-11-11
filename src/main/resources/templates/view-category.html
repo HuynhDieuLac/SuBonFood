@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout-shop}">
+<head >
+
+<title>Ăn Vặt SuBon</title>
+</head>
+<body>
+<div layout:fragment="content">
+		
+	<div class="row" style="margin-top: 40px;"  >
+		
+		<div class="col-md-4" >
+			<hr style="color: red; border-width: 5px; margin-left: 15px; margin-top: 35px;"></hr>
+		</div>
+		
+		<div class="col-md-4">
+			<h2
+			style="text-align: center; background-color: pink; border-radius: 15px; padding-top: 20px; padding-bottom: 20px;"
+			><a style="color: white; font-weight: bold; text-decoration: none;" 
+			th:text = "${category.name}"
+			></a></h2>
+		</div>
+		
+		<div class="col-md-4">
+			<hr style="color: red; border-width: 5px; margin-right: 15px; margin-top: 35px;"></hr>
+		</div>
+	</div>
+		
+	<div class="container" style="width: 100%; height: 100%;">
+		<div class="row" style="margin-top: 20px;">
+			<div class="col-md-4" style="margin-bottom: 20px;" th:each = "food : ${food2s}">			
+			
+				<div class="card h-100" style="border-radius: 20px;">
+					
+					<a th:href="@{/shop/foodInfo?(foodId=${food.id})}">
+							<img style="border-radius: 20px;" class="card-img-top" th:attr="src=@{/upload/{path}(path=${food.thumbnailImageName})}">
+					</a>
+					
+					<div class="card-body" style="margin-top: 15px; text-align: center;">
+						
+						
+						<div style="text-align: center; margin-top: 10px;">
+			
+							<div style="font-size: 30px; text-transform: uppercase;" th:text="${food.foodName}"></div>
+							<div style="color: #fdb918; font-size: 30px">☆☆☆☆☆</div>
+							<div style="color: #f2577b; font-size: 30px" th:text="${food.price} + '₫'"></div>
+						</div>
+					</div>
+					<a th:href="@{/shop/buyFood?(id=${food.id})}"
+						class="btn btn-primary">Thêm vào giỏ hàng <i
+						class="fas fa-shopping-cart"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+			
+					  <ul  class="pagination" style="margin-left: 43%; margin-top: 10px;">
+					  
+					    <li th:if="${currentPage > 1}" class="page-item">
+					    	<a style="font-weight: bold; font-size: 25px; font-weight: bold"  class="page-link" th:href="@{/?(page=${currentPage-1},sortField=${sortField},sortDir=${sortDir})}">Quay Lại</a>
+					    </li>
+					    
+					    <li th:if="${currentPage <= 1}" class="page-item disabled">
+					    	<a style="font-weight: bold; font-size: 25px; color: black;" class="page-link" href="#">Quay Lại</a>
+					    </li>					    
+					   				    
+					    <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+					    	<a style="font-weight: bold; font-size: 25px; color: black;" class="page-link" th:text=${i} th:href="@{/?(page=${i},sortField=${sortField},sortDir=${sortDir})}">1</a>
+					    </li>
+					    
+					    <li th:if="${currentPage < totalPages}" class="page-item">
+					    	<a style="font-weight: bold; font-size: 25px; font-weight: bold" class="page-link" th:href="@{/?(page=${currentPage+1},sortField=${sortField},sortDir=${sortDir})}">Tiếp Tục</a>
+					    </li>
+					    <li th:if="${currentPage >=  totalPages}" class="page-item disabled">
+					    	<a style="font-weight: bold; font-size: 25px; color: black;" class="page-link" href="#">Tiếp Tục</a>
+					    </li>
+					  </ul>
+					  
+			
+</div>	
+
+
+</body>
+</html>

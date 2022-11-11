@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout-shop}">
+<head>
+<title>Ăn Vặt SuBon</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		
+		<div class="row" style="margin-top: 40px;">
+			<div class="col-md-4">
+				<hr style="color: red; border-width: 5px; margin-left: 15px; margin-top: 35px;"></hr>
+			</div>
+		
+			<div class="col-md-4">
+				<h2
+					style="text-align: center; background-color: pink; border-radius: 15px; padding-top: 20px; padding-bottom: 20px;"
+					><a style="color: white; font-weight: bold; text-decoration: none;" >Chi Tiết Sản Phẩm</a></h2>
+			</div>
+		
+			<div class="col-md-4">
+				<hr style="color: red; border-width: 5px; margin-right: 15px; margin-top: 35px;"></hr>
+			</div>
+		
+		</div>		
+		
+		<div class="container" style="width: 100%; height: 100%;" th:each = "food : ${foods}">
+		<div class="row" style="margin-top: 35px;">
+			<div class="col-md-6">
+				<div class="card mt-4" style="background-color: #e2f1f6; border: white;" >
+						<img style="width: 500px; height: 500px;" th:attr="src=@{/upload/{path}(path=${food.thumbnailImageName})}">
+				</div>
+			</div>
+			 
+			<div class="col-md-6" style="margin-top: 35px;">
+				<span class="title" th:text="${food.foodName}"></span>
+				<p style="font-size: 50px; color: #ffc210;">☆☆☆☆☆</p>
+				<p style="font-size: 30px;">Trạng Thái: </p>
+					
+					<h4>
+						<span style="font-size: 35px; color: #f1486f; font-weight: bold;" 
+						th:text="${food.price} + '₫'"></span>
+					</h4>
+						
+						<div class="description">
+						<span>Mô Tả: 
+							<span class="card-text" th:text="${food.description}"></span>
+						</span>
+						</div>
+						
+						<div style="margin-top: 20px;">
+						<a class="description-a" th:href="@{/shop/buyFood?(id=${food.id })}"
+							>
+							
+							<span>Mua Hàng</span>	
+						</a> 
+						</div>
+						
+						<div style="margin-top: 20px;">
+							<span style="font-size: 35px;">Chia sẻ: 
+							
+							<a href="https://www.facebook.com/anvatSuBonPhanVanTri">
+							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+</svg>
+							</a>
+							</span>
+						</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

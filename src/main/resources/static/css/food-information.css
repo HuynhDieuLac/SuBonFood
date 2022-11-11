@@ -1,0 +1,28 @@
+.title
+{
+	font-weight: bold;
+	font-size: 50px;
+	text-transform: uppercase;
+}
+
+.description
+{
+	font-size: 20px;
+	
+}
+
+.description-a
+{
+	text-decoration: none;
+	border: 1px solid white;
+	background-color: pink;
+	font-size: 35px;
+	color: white;
+	padding: 14px;
+	border-radius: 15px;
+}
+
+a.description-a:hover
+{
+	color: #f1486f;
+}
